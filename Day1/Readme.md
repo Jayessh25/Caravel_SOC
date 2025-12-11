@@ -109,7 +109,7 @@ Hardware logic inside Caravel handles this sharing by allowing:
 | **SDO (MISO)** | Slave Data Out | E9 |
 
 ---
-### SPI protocol definition
+### SPI protocol definition:
 
 All input is in groups of 8 bits. Each byte is input most-significant-bit first.
 
@@ -146,7 +146,7 @@ The first transferred byte is the command word, interpreted according to the Hou
  - All other words are reserved and act as no-operation if not defined by the SPI responder module.
 
 ---
-### Housekeeping SPI modes
+### Housekeeping SPI modes:
 The two basic modes of operation are streaming mode and n-byte mode.
 
 In streaming mode operation, the data is sent or received continuously, one byte at a time, with the internal address incrementing for each byte. Streaming mode operation continues until CSB is raised to end the transfer.
@@ -155,7 +155,7 @@ In n-byte mode operation, the number of bytes to be read and/or written is encod
 
 ---
 
-Housekeeping SPI registers
+### Housekeeping SPI registers:
 The purpose of the housekeeping SPI is to give access to certain system values and controls independently of the CPU. The housekeeping SPI can be accessed even when the CPU is in full reset. Some control registers in the housekeeping SPI affect the behaviour of the CPU in a way that can be potentially detrimental to the CPU operation, such as adjusting the trim value of the digital frequency-locked loop generating the CPU core clock.
 
 Under normal working conditions, the SPI should not need to be accessed unless it is to adjust the clock speed of the CPU. All other functions are purely for test and debug.
