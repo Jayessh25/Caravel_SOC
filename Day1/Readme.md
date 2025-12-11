@@ -8,7 +8,7 @@ It provides a ready-to-use infrastructure so designers can focus entirely on the
 Caravel includes an integrated RISC-V management SoC, a complete GPIO subsystem, and a well-structured user project area.
 This combination makes it easier for developers to design, test, verify, and tape-out their ASIC designs with lower risk and faster development cycles.
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command15.png)
 
 
 ### Caravel divides the chip into two main regions:
@@ -115,8 +115,7 @@ All input is in groups of 8 bits. Each byte is input most-significant-bit first.
 
 Every command sequence requires one command word (8 bits), followed by one address word (8 bits), followed by one or more data words (8 bits each), according to the data transfer modes described in Housekeeping SPI modes.
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
-
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command16.png)
 Addresses are read in sequence from lower values to higher values.
 
 Therefore groups of bits larger than 8 should be grouped such that the lowest bits are at the highest address. Any bits additional to an 8-bit boundary should be at the lowest address.
@@ -163,7 +162,7 @@ Under normal working conditions, the SPI should not need to be accessed unless i
 
 The housekeeping SPI can be accessed by the CPU from a running program by enabling the SPI controller, and enabling the bit that connects the internal SPI controller directly to the housekeeping SPI. This configuration then allows a program to read, for example, the user project ID of the chip. See the SPI controller description for details.
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command14.png)
 
 ### Housekeeping SPI Registers
 
@@ -213,10 +212,14 @@ The housekeeping SPI can be accessed by the CPU from a running program by enabli
     ### choose the version from the previous list :
         volare enable --pdk sky130 <version_number>
 
-## Clone the Caravel Repository
+## Clone the Caravel Repository & and also several things like iverilog,vvp,verilator
 
     git clone https://github.com/efabless/caravel.git
 
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command1.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command2.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command3.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command4.png)
 
 ---
 
@@ -280,9 +283,11 @@ Inside the HKSPI testbench folder (`caravel/verilog/dv/caravel/mgmt_soc/hkspi`) 
 
       make RTL=SIM
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command6.png)
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+gtkwave hkspi.vcd
+
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command9.png)
 
 
 # Gate-Level Simulation (GLS) of Housekeeping SPI
@@ -319,8 +324,9 @@ synth -top housekeeping_spi
 ```
 
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command10.png)
+
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command11.png)
 
 After synthesis, technology mapping is performed using `abc` and `dfflibmap`:
 
@@ -334,7 +340,7 @@ The synthesized schematic can be viewed using:
 ```
 show housekeeping_spi
 ```
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command12.png)
 
 ## Writing the Gate-Level Netlist
 
@@ -344,7 +350,7 @@ The synthesized netlist is written to a Verilog file:
 write_verilog -noattr housekeeping_spi_netlist.v
 ```
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command13.png)
 
 
 The netlist is now ready. For GLS, this gate-level netlist must be connected into the Caravel design structure so that it is simulated in the same environment as the RTL.
@@ -364,7 +370,7 @@ make SIM=GLS
 
 This triggers the simulation using the synthesized netlist instead of the RTL.
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command7.png)
 
 
 
@@ -372,11 +378,12 @@ This triggers the simulation using the synthesized netlist instead of the RTL.
 
 Once the GLS VCD was generated, it was opened in GTKWave:
 
-![VSDBabySoc Block Diagram](https://github.com/Jayessh25/Jayessh25_RISC-V-SoC-Tapeout-Program_VSD/blob/main/Week2/vsdbabysoc_block_diagram.png)
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command9.png)
 
 
 The GLS matches the RTL in functionality, except for register 12, which did not produce the expected value during RTL simulation as well. That issue is related to the CPU trap flag and has been explored separately.
 
+![a](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day1/Images/Command17.png)
 
 ## RTL vs GLS Comparison
 
