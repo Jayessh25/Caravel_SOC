@@ -101,7 +101,7 @@ Here's the complete step-by-step guide to set up Gate-Level Simulation from scra
 ## **Step 1: Navigate to GLS Directory**
 
 ```bash
-cd ~/rehman/vsdRiscvScl180/gls
+cd ~/jaysk/vsdRiscvScl180/gls
 ```
 
 ## **Step 2: Copy All Required RTL Files to GL Directory**
@@ -128,87 +128,74 @@ cd ../gls
 ## **Step 4: Create/Update the Makefile**
 
 ```bash
-cat > Makefile << 'EOF'
-# SPDX-FileCopyrightText: 2020 Efabless Corporation
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-# SPDX-License-Identifier: Apache-2.0
-
-scl_io_PATH = "/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/4M1L/verilog/tsl18cio250/zero"
-scl_io_wrapper_PATH = ../rtl/scl180_wrapper
-VERILOG_PATH = ../
+scl_io_PATH = "/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero"
+VERILOG_PATH = ../../
 RTL_PATH = $(VERILOG_PATH)/rtl
-GL_PATH = $(VERILOG_PATH)/gl
-BEHAVIOURAL_MODELS = ../gls
+BEHAVIOURAL_MODELS = ../ 
 RISCV_TYPE ?= rv32imc
-PDK_PATH = /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/verilog/vcs_sim_model 
-FIRMWARE_PATH = ../gls
-GCC_PATH?=/home/prakhan/rehman/riscv32-unknown-elf/bin
+
+FIRMWARE_PATH = ../
+GCC_PATH?=/home/jaysk/riscv
 GCC_PREFIX?=riscv32-unknown-elf
 
 SIM_DEFINES = -DFUNCTIONAL -DSIM
-SIM?=gl
+
+SIM?=RTL
 
 .SUFFIXES:
 
 PATTERN = hkspi
 
+# Path to management SoC wrapper repository
+scl_io_wrapper_PATH ?= $(RTL_PATH)/scl180_wrapper
+	
+
 vvp:  ${PATTERN:=.vvp}
+
 hex:  ${PATTERN:=.hex}
+
 vcd:  ${PATTERN:=.vcd}
 
 %.vvp: %_tb.v %.hex
-	iverilog -Ttyp $(SIM_DEFINES) -DGL \
-	-I $(VERILOG_PATH) \
-	-I $(VERILOG_PATH)/synthesis/output \
-	-I $(BEHAVIOURAL_MODELS) \
-	-I $(RTL_PATH) \
-	-I $(GL_PATH) \
-	-I $(scl_io_wrapper_PATH) \
-	-I $(scl_io_PATH) \
-	-I $(PDK_PATH) \
-	-y $(scl_io_wrapper_PATH) \
-	-y $(RTL_PATH) \
-	-y $(GL_PATH) \
-	-y $(scl_io_PATH) \
-	-y $(PDK_PATH) \
-	$(GL_PATH)/defines.v $< -o $@
+	iverilog -Ttyp $(SIM_DEFINES) -I $(BEHAVIOURAL_MODELS) \
+	 -I $(RTL_PATH) -I $(scl_io_wrapper_PATH) -I $(scl_io_PATH)  \
+	$< -o $@ 
+ 
+	
+
 
 %.vcd: %.vvp
 	vvp $<
 
-%.elf: %.c $(FIRMWARE_PATH)/sections.lds $(FIRMWARE_PATH)/start.s
-	${GCC_PATH}/${GCC_PREFIX}-gcc -march=$(RISCV_TYPE) -mabi=ilp32 -Wl,-Bstatic,-T,$(FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(FIRMWARE_PATH)/start.s $<
+#%.elf: %.c $(FIRMWARE_PATH)/sections.lds $(FIRMWARE_PATH)/start.s
+#	${GCC_PATH}/${GCC_PREFIX}-gcc -march=$(RISCV_TYPE) -mabi=ilp32 -Wl,-Bstatic,-T,$(FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(FIRMWARE_PATH)/start.s $<
 
-%.hex: %.elf
-	${GCC_PATH}/${GCC_PREFIX}-objcopy -O verilog $< $@ 
+#%.hex: %.elf
+#	${GCC_PATH}/${GCC_PREFIX}-objcopy -O verilog $< $@ 
 	# to fix flash base address
-	sed -i 's/@10000000/@00000000/g' $@
+#	sed -i 's/@10000000/@00000000/g' $@
 
-%.bin: %.elf
-	${GCC_PATH}/${GCC_PREFIX}-objcopy -O binary $< /dev/stdout | tail -c +1048577 > $@
+#%.bin: %.elf
+#	${GCC_PATH}/${GCC_PREFIX}-objcopy -O binary $< /dev/stdout | tail -c +1048577 > $@
 
 check-env:
+#ifndef PDK_ROOT
+#	$(error PDK_ROOT is undefined, please export it before running make)
+#endif
+#ifeq (,$(wildcard $(PDK_ROOT)/$(PDK)))
+#	$(error $(PDK_ROOT)/$(PDK) not found, please install pdk before running make)
+#endif
 ifeq (,$(wildcard $(GCC_PATH)/$(GCC_PREFIX)-gcc ))
 	$(error $(GCC_PATH)/$(GCC_PREFIX)-gcc is not found, please export GCC_PATH and GCC_PREFIX before running make)
 endif
+# check for efabless style installation
+ifeq (,$(wildcard $(PDK_ROOT)/$(PDK)/libs.ref/*/verilog))
+#SIM_DEFINES := ${SIM_DEFINES} -DEF_STYLE
+endif
+# ---- Clean ----
 
 clean:
-	rm -f *.elf *.hex *.bin *.vcd *.vvp *.log
-
-.PHONY: clean hex vvp vcd
-EOF
+	rm -f *.vcd *.log *.vvp
 ```
 
 ## **Step 5: Compile and Run Simulation**
@@ -378,7 +365,7 @@ Warning: Design 'vsdcaravel' has '2' unresolved references. For more detailed in
 Report : area
 Design : vsdcaravel
 Version: T-2022.03-SP5
-Date   : Fri Dec 12 17:43:42 2025
+Date   : Mon Dec 15 17:44:07 2025
 ****************************************
 
 Library(s) Used:
@@ -409,44 +396,6 @@ Information: This design contains black box (unknown) components. (RPT-8)
 ### Power Post Synth Report
 ```
 Loading db file '/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db'
-Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-Warning: There is no defined clock in the design. (PWR-80)
-Warning: Design has unannotated primary inputs. (PWR-414)
-Warning: Design has unannotated sequential cell outputs. (PWR-415)
-Warning: Design has unannotated black box outputs. (PWR-428)
- 
-****************************************
-Report : power
-        -analysis_effort low
-Design : vsdcaravel
-Version: T-2022.03-SP5
-Date   : Fri Dec 12 17:43:43 2025
-****************************************
-
-
-Library(s) Used:
-
-    tsl18fs120_scl_ff (File: /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db)
-
-
-Operating Conditions: tsl18cio250_min   Library: tsl18cio250_min
-Wire Load Model Mode: enclosed
-
-Design        Wire Load Model            Library
-------------------------------------------------
-vsdcaravel             1000000           tsl18cio250_min
-caravel_core           1000000           tsl18cio250_min
-mgmt_core_wrapper      540000            tsl18cio250_min
-mgmt_protect           8000              tsl18cio250_min
-user_project_wrapper   16000             tsl18cio250_min
-caravel_clocking       8000              tsl18cio250_min
-digital_pll            8000              tsl18cio250_min
-housekeeping           140000            tsl18cio250_min
-mprj_io_buffer         ForQA             tsl18cio250_min
-
-*
-*
-
 Global Operating Voltage = 1.98 
 Power-specific unit information :
     Voltage Units = 1V
@@ -543,7 +492,7 @@ Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock
 Report : qor
 Design : vsdcaravel
 Version: T-2022.03-SP5
-Date   : Fri Dec 12 17:43:42 2025
+Date   : Mon Dec 15 17:44:07 2025
 ****************************************
 
 
@@ -604,12 +553,12 @@ Date   : Fri Dec 12 17:43:42 2025
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    9.79
-  Logic Optimization:                 11.05
-  Mapping Optimization:                8.86
+  Resource Sharing:                    9.97
+  Logic Optimization:                 11.28
+  Mapping Optimization:                9.10
   -----------------------------------------
-  Overall Compile Time:               33.84
-  Overall Compile Wall Clock Time:    34.46
+  Overall Compile Time:               34.56
+  Overall Compile Wall Clock Time:    35.14
 
   --------------------------------------------------------------------
 
@@ -622,4 +571,5 @@ Date   : Fri Dec 12 17:43:42 2025
 
 
 1
+
 ```
