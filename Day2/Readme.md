@@ -62,12 +62,12 @@ Before using this repository, ensure you have the following dependencies install
    vvp hkspi.vvp
    ```
 - you should receive output similar to following output on successfull execution
-![functional simulation]()
+![functional simulation](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day2/Images/Command1.png)
 7. Visualize the Testbench waveforms for complete design using following command
    ```
    gtkwave hkspi.vcd hkspi_tb.v
    ```
-   ![GTK WAVE]()
+   ![GTK WAVE](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day2/Images/Command2.png)
 
 ### Synthesis Setup
 8. Modify and verify following variables in synth.tcl file at path [./synthesis/synth.tcl](./synthesis/synth.tcl)
@@ -340,14 +340,14 @@ This will convert the blackboxed modules to external includes, allowing you to p
    make
    vvp hkspi.vvp
    ```
-
+![GTK WAVE](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day2/Images/Command3.png)
 
 17. Visualize the Testbench waveforms for complete design using following command
    ```
    gtkwave hkspi.vcd hkspi_tb.v
    ```
 
-
+![GTK WAVE](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day2/Images/Command4.png)
 
 18. Compare output from functional Simulation and GLS to verify the synthesis output
 
