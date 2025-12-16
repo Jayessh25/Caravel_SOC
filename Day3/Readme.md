@@ -34,20 +34,30 @@ Before using this repository, ensure you have the following dependencies install
 ```bash
 vcs -full64 -sverilog -timescale=1ns/1ps -debug_access+all +vpdfile+dump.vpd +incdir+../ +incdir+../../rtl +incdir+../../rtl/scl180_wrapper +incdir+/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero +define+FUNCTIONAL +define+SIM hkspi_tb.v -o simv
 ```
-<img width="776" height="914" alt="image" src="https://github.com/user-attachments/assets/a2ae8c0c-9331-4b8f-9a67-011fad0ca8a2" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command2.png" />
 
 before running the command clear previous output
 ```bash
 rm -f *.vcd *.vpd
 ```
-currently while running the vcs command it will generate vdp file but currently the tool which can access the vdp file is not installed so manually generating .vcd file so that we can see in gtkwave
+
+general 
+```bash
+/simv
+```
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command3.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command6.png" />
+currently while running the vcs command it will generate vdp file but currently the tool which can access the vpd file is not installed so manually generating .vcd file so that we can see in gtkwave
 we have to generate it using this command
 
 ```bash
 ./simv -no_save +define+DUMP_VCD=1 | tee sim_log.txt
 
 ```
-<img width="776" height="914" alt="image" src="https://github.com/user-attachments/assets/a2ae8c0c-9331-4b8f-9a67-011fad0ca8a2" />
+
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command5.png" />
+
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command4.png" />
 
 
 ## Key Changes Made
@@ -105,9 +115,7 @@ module dummy_schmittbuf (
 endmodule
 
 ```
-Step 4: After all changes re-run the command make compile
-
-<img width="776" height="914" alt="image" src="https://github.com/user-attachments/assets/b48e3bb4-f9bc-415f-893e-49df78c52d4b" />
+Step 4: After all changes re-run the command 
 
 ---
 
@@ -128,6 +136,8 @@ Important Constraint:
     3) Treat them as modules/blackboxes as appropriate
 
 as per the task 2 we need to make modules like POR and memory modules such as RAM128 and RAM256 as blackbox and should not synthesize them. To do that we need to change synth.tcl with many changes. Follow the included run_dc_topo.tcl file in the repository to make the modules as blackbox and synthesis rest of the logic.
+
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command7.png" />
 
 ```run_dc_topo.tcl
 # ========================================================================
@@ -826,15 +836,14 @@ puts "INFO: Synthesis Complete!"
   ```
 - The above command will do synthesis using dc_shell tool and create a log file.
 
-<img width="738" height="662" alt="image" src="https://github.com/user-attachments/assets/f205ea8e-ece9-4968-bf07-7f60a4a2e18b" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command8.png" />
 
 - After synthesis go to output directory and check the `vsdcaravel_synthesis.v`. The POR and Memory modules will have only ports.
 
-<img width="791" height="748" alt="image" src="https://github.com/user-attachments/assets/9edfa89b-128f-4a53-9574-fe0cd48dbf02" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command10.png" />
 
 ---
-
-<img width="1148" height="745" alt="image" src="https://github.com/user-attachments/assets/3e6f4e2e-8dde-4ca5-a4a6-690ff0c74754" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command10.png" />
 
 
 This script ensures RAM128, RAM256, and dummy_por remain as port-only blackboxes, ready for macro replacement during physical design!
@@ -3811,6 +3820,8 @@ endmodule
 */
 
 ```
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command10.png" />
+
 - Copy all rtl files into gl directory, then edit the Makefile as per below.
 
 ```Makefile
@@ -3925,10 +3936,11 @@ make: *** [simv] Error 255
 To correct the error u have to go to thr hkspi_tb.v and define integer i in the module and remove the integer already defined inside the module
 again run "make simv" output will come 
 
-- now run "make hkspi.vcd"  u will get output  of gls passed 
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command11.png" />
+- now run "make hkspi.vcd"  u will get output  of gls passed
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command12.png" />
 - gtkwave hkspi.vcd u will see the waveform of gls 
 - To view the waveform use vcd file and open it using gtkwave
-
-<img width="1668" height="964" alt="image" src="https://github.com/user-attachments/assets/e7dc194a-9cc5-4e58-aab1-1cb299930546" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command13.png" />
 
 
