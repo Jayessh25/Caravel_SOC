@@ -69,19 +69,13 @@ The changes to get the rtl verification without dummy_por.v,have already explain
 ```bash
 vcs -full64 -sverilog -timescale=1ns/1ps -debug_access+all +vpdfile+dump.vpd +incdir+../ +incdir+../../rtl +incdir+../../rtl/scl180_wrapper +incdir+/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero +define+FUNCTIONAL +define+SIM hkspi_tb.v -o simv
 ```
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command2.png" />
+<img width="776" height="914" alt="image" src="" />
 
 before running the command clear previous output
 ```bash
 rm -f *.vcd *.vpd
 ```
 
-general 
-```bash
-/simv
-```
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command3.png" />
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command6.png" />
 currently while running the vcs command it will generate vdp file but currently the tool which can access the vpd file is not installed so manually generating .vcd file so that we can see in gtkwave
 we have to generate it using this command
 
@@ -90,9 +84,9 @@ we have to generate it using this command
 
 ```
 
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command5.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command6.png" />
 
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command4.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command7.png" />
 
 
 ## Key Changes Made
@@ -875,10 +869,12 @@ puts "INFO: Synthesis Complete!"
 
 - After synthesis go to output directory and check the `vsdcaravel_synthesis.v`. The POR and Memory modules will have only ports.
 
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command10.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command8.png" />
+
+**Note** see currently there is no dummy_por
 
 ---
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command10.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command11.png" />
 
 
 This script ensures RAM128, RAM256, and dummy_por remain as port-only blackboxes, ready for macro replacement during physical design!
@@ -942,6 +938,7 @@ Information: This design contains black box (unknown) components. (RPT-8)
 
 ```bash
 Loading db file '/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db'
+Loading db file '/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/4M1L/liberty/tsl18cio250_min.db'
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated primary inputs. (PWR-414)
 Warning: Design has unannotated sequential cell outputs. (PWR-415)
@@ -952,13 +949,14 @@ Report : power
         -analysis_effort low
 Design : vsdcaravel
 Version: T-2022.03-SP5
-Date   : Sun Dec 14 18:30:23 2025
+Date   : Tue Dec 16 18:24:32 2025
 ****************************************
 
 
 Library(s) Used:
 
     tsl18fs120_scl_ff (File: /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db)
+    tsl18cio250_min (File: /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/4M1L/liberty/tsl18cio250_min.db)
 
 
 Operating Conditions: tsl18cio250_min   Library: tsl18cio250_min
@@ -967,8 +965,11 @@ Wire Load Model Mode: enclosed
 Design        Wire Load Model            Library
 ------------------------------------------------
 vsdcaravel             1000000           tsl18cio250_min
+chip_io                4000              tsl18cio250_min
 caravel_core           1000000           tsl18cio250_min
-mgmt_core_wrapper      540000            tsl18cio250_min
+constant_block_0       ForQA             tsl18cio250_min
+mprj_io                ForQA             tsl18cio250_min
+mgmt_core_wrapper      280000            tsl18cio250_min
 mgmt_protect           8000              tsl18cio250_min
 user_project_wrapper   16000             tsl18cio250_min
 caravel_clocking       8000              tsl18cio250_min
@@ -986,7 +987,9 @@ user_id_programming_00000000
                        ForQA             tsl18cio250_min
 xres_buf               ForQA             tsl18cio250_min
 spare_logic_block_0    4000              tsl18cio250_min
-mgmt_core              540000            tsl18cio250_min
+dummy_scl180_conb_1_760
+                       ForQA             tsl18cio250_min
+mgmt_core              280000            tsl18cio250_min
 mprj_logic_high        ForQA             tsl18cio250_min
 mprj2_logic_high       ForQA             tsl18cio250_min
 mgmt_protect_hv        ForQA             tsl18cio250_min
@@ -995,17 +998,19 @@ clock_div_SIZE3_1      4000              tsl18cio250_min
 ring_osc2x13           4000              tsl18cio250_min
 digital_pll_controller 8000              tsl18cio250_min
 housekeeping_spi       8000              tsl18cio250_min
-dummy_scl180_conb_1_744
-                       ForQA             tsl18cio250_min
 gpio_logic_high_36     ForQA             tsl18cio250_min
 scl180_marco_sparecell_36
                        ForQA             tsl18cio250_min
-VexRiscv               540000            tsl18cio250_min
 even_1                 4000              tsl18cio250_min
 odd_1                  4000              tsl18cio250_min
 delay_stage_11         4000              tsl18cio250_min
 start_stage            4000              tsl18cio250_min
-InstructionCache       140000            tsl18cio250_min
+constant_block_6       ForQA             tsl18cio250_min
+constant_block_5       ForQA             tsl18cio250_min
+constant_block_4       ForQA             tsl18cio250_min
+constant_block_3       ForQA             tsl18cio250_min
+constant_block_2       ForQA             tsl18cio250_min
+constant_block_1       ForQA             tsl18cio250_min
 spare_logic_block_3    4000              tsl18cio250_min
 spare_logic_block_2    4000              tsl18cio250_min
 spare_logic_block_1    4000              tsl18cio250_min
@@ -2459,44 +2464,6 @@ dummy_scl180_conb_1_717
                        ForQA             tsl18cio250_min
 dummy_scl180_conb_1_716
                        ForQA             tsl18cio250_min
-dummy_scl180_conb_1_772
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_771
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_770
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_769
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_768
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_767
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_766
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_765
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_764
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_763
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_762
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_761
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_760
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_785
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_784
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_783
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_782
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_781
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_780
-                       ForQA             tsl18cio250_min
 dummy_scl180_conb_1_779
                        ForQA             tsl18cio250_min
 dummy_scl180_conb_1_778
@@ -2510,1121 +2477,6 @@ dummy_scl180_conb_1_775
 dummy_scl180_conb_1_774
                        ForQA             tsl18cio250_min
 dummy_scl180_conb_1_773
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_798
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_797
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_796
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_795
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_794
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_793
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_792
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_791
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_790
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_789
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_788
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_787
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_786
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_811
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_810
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_809
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_808
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_807
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_806
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_805
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_804
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_803
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_802
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_801
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_800
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_799
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_824
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_823
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_822
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_821
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_820
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_819
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_818
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_817
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_816
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_815
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_814
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_813
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_812
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_837
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_836
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_835
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_834
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_833
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_832
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_831
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_830
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_829
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_828
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_827
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_826
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_825
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_850
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_849
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_848
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_847
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_846
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_845
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_844
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_843
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_842
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_841
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_840
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_839
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_838
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_863
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_862
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_861
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_860
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_859
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_858
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_857
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_856
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_855
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_854
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_853
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_852
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_851
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_876
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_875
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_874
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_873
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_872
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_871
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_870
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_869
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_868
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_867
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_866
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_865
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_864
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_889
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_888
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_887
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_886
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_885
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_884
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_883
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_882
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_881
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_880
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_879
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_878
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_877
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_902
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_901
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_900
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_899
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_898
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_897
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_896
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_895
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_894
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_893
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_892
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_891
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_890
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_915
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_914
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_913
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_912
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_911
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_910
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_909
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_908
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_907
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_906
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_905
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_904
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_903
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_928
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_927
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_926
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_925
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_924
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_923
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_922
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_921
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_920
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_919
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_918
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_917
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_916
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_941
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_940
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_939
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_938
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_937
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_936
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_935
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_934
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_933
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_932
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_931
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_930
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_929
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_954
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_953
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_952
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_951
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_950
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_949
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_948
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_947
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_946
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_945
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_944
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_943
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_942
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_967
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_966
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_965
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_964
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_963
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_962
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_961
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_960
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_959
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_958
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_957
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_956
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_955
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_980
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_979
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_978
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_977
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_976
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_975
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_974
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_973
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_972
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_971
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_970
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_969
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_968
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_993
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_992
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_991
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_990
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_989
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_988
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_987
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_986
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_985
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_984
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_983
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_982
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_981
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1006
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1005
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1004
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1003
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1002
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1001
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1000
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_999
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_998
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_997
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_996
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_995
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_994
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1019
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1018
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1017
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1016
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1015
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1014
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1013
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1012
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1011
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1010
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1009
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1008
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1007
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1032
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1031
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1030
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1029
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1028
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1027
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1026
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1025
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1024
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1023
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1022
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1021
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1020
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1045
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1044
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1043
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1042
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1041
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1040
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1039
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1038
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1037
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1036
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1035
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1034
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1033
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1058
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1057
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1056
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1055
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1054
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1053
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1052
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1051
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1050
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1049
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1048
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1047
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1046
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1071
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1070
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1069
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1068
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1067
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1066
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1065
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1064
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1063
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1062
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1061
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1060
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1059
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1084
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1083
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1082
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1081
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1080
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1079
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1078
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1077
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1076
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1075
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1074
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1073
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1072
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1097
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1096
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1095
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1094
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1093
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1092
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1091
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1090
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1089
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1088
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1087
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1086
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1085
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1110
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1109
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1108
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1107
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1106
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1105
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1104
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1103
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1102
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1101
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1100
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1099
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1098
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1123
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1122
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1121
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1120
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1119
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1118
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1117
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1116
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1115
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1114
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1113
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1112
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1111
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1136
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1135
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1134
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1133
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1132
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1131
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1130
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1129
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1128
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1127
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1126
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1125
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1124
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1149
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1148
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1147
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1146
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1145
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1144
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1143
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1142
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1141
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1140
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1139
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1138
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1137
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1162
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1161
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1160
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1159
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1158
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1157
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1156
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1155
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1154
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1153
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1152
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1151
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1150
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1175
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1174
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1173
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1172
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1171
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1170
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1169
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1168
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1167
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1166
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1165
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1164
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1163
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1188
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1187
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1186
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1185
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1184
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1183
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1182
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1181
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1180
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1179
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1178
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1177
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1176
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1201
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1200
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1199
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1198
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1197
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1196
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1195
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1194
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1193
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1192
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1191
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1190
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1189
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_730
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_729
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_728
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_727
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_726
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_725
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_724
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_723
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_722
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_721
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_720
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_719
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_718
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_743
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_742
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_741
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_740
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_739
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_738
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_737
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_736
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_735
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_734
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_733
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_732
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_731
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1214
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1213
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1212
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1211
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1210
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1209
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1208
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1207
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1206
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1205
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1204
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1203
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_1202
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_756
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_755
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_754
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_753
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_752
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_751
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_750
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_749
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_748
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_747
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_746
-                       ForQA             tsl18cio250_min
-dummy_scl180_conb_1_745
-                       ForQA             tsl18cio250_min
-even_0                 4000              tsl18cio250_min
-odd_0                  4000              tsl18cio250_min
-delay_stage_0          4000              tsl18cio250_min
-delay_stage_1          4000              tsl18cio250_min
-delay_stage_2          4000              tsl18cio250_min
-delay_stage_3          4000              tsl18cio250_min
-delay_stage_4          4000              tsl18cio250_min
-delay_stage_5          4000              tsl18cio250_min
-delay_stage_6          4000              tsl18cio250_min
-delay_stage_7          4000              tsl18cio250_min
-delay_stage_8          4000              tsl18cio250_min
-delay_stage_9          4000              tsl18cio250_min
-delay_stage_10         4000              tsl18cio250_min
-gpio_logic_high_15     ForQA             tsl18cio250_min
-gpio_logic_high_14     ForQA             tsl18cio250_min
-gpio_logic_high_13     ForQA             tsl18cio250_min
-gpio_logic_high_12     ForQA             tsl18cio250_min
-gpio_logic_high_11     ForQA             tsl18cio250_min
-gpio_logic_high_10     ForQA             tsl18cio250_min
-gpio_logic_high_9      ForQA             tsl18cio250_min
-gpio_logic_high_8      ForQA             tsl18cio250_min
-gpio_logic_high_7      ForQA             tsl18cio250_min
-gpio_logic_high_6      ForQA             tsl18cio250_min
-gpio_logic_high_5      ForQA             tsl18cio250_min
-gpio_logic_high_4      ForQA             tsl18cio250_min
-gpio_logic_high_3      ForQA             tsl18cio250_min
-gpio_logic_high_2      ForQA             tsl18cio250_min
-gpio_logic_high_1      ForQA             tsl18cio250_min
-gpio_logic_high_0      ForQA             tsl18cio250_min
-gpio_logic_high_18     ForQA             tsl18cio250_min
-gpio_logic_high_17     ForQA             tsl18cio250_min
-gpio_logic_high_16     ForQA             tsl18cio250_min
-gpio_logic_high_29     ForQA             tsl18cio250_min
-gpio_logic_high_28     ForQA             tsl18cio250_min
-gpio_logic_high_27     ForQA             tsl18cio250_min
-gpio_logic_high_26     ForQA             tsl18cio250_min
-gpio_logic_high_25     ForQA             tsl18cio250_min
-gpio_logic_high_24     ForQA             tsl18cio250_min
-gpio_logic_high_23     ForQA             tsl18cio250_min
-gpio_logic_high_22     ForQA             tsl18cio250_min
-gpio_logic_high_21     ForQA             tsl18cio250_min
-gpio_logic_high_20     ForQA             tsl18cio250_min
-gpio_logic_high_19     ForQA             tsl18cio250_min
-gpio_logic_high_35     ForQA             tsl18cio250_min
-gpio_logic_high_34     ForQA             tsl18cio250_min
-gpio_logic_high_33     ForQA             tsl18cio250_min
-gpio_logic_high_32     ForQA             tsl18cio250_min
-gpio_logic_high_31     ForQA             tsl18cio250_min
-gpio_logic_high_30     ForQA             tsl18cio250_min
-gpio_logic_high_37     ForQA             tsl18cio250_min
-scl180_marco_sparecell_15
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_14
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_13
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_12
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_11
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_10
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_9
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_8
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_7
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_6
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_5
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_4
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_3
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_2
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_1
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_0
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_18
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_17
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_16
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_29
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_28
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_27
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_26
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_25
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_24
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_23
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_22
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_21
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_20
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_19
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_35
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_34
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_33
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_32
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_31
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_30
-                       ForQA             tsl18cio250_min
-scl180_marco_sparecell_37
-                       ForQA             tsl18cio250_min
-housekeeping_DW01_add_0_DW01_add_1
-                       4000              tsl18cio250_min
-housekeeping_DW01_add_1_DW01_add_2
-                       4000              tsl18cio250_min
-housekeeping_DW01_inc_1_DW01_inc_16
-                       4000              tsl18cio250_min
-housekeeping_spi_DW01_inc_0_DW01_inc_17
-                       4000              tsl18cio250_min
-digital_pll_controller_DW01_inc_1_DW01_inc_19
-                       4000              tsl18cio250_min
-mgmt_core_DW01_dec_0_DW01_dec_9
-                       4000              tsl18cio250_min
-mgmt_core_DW01_dec_1_DW01_dec_10
-                       4000              tsl18cio250_min
-mgmt_core_DW01_add_0_DW01_add_4
-                       4000              tsl18cio250_min
-mgmt_core_DW01_add_1_DW01_add_5
-                       4000              tsl18cio250_min
-mgmt_core_DW01_add_2_DW01_add_6
-                       4000              tsl18cio250_min
-mgmt_core_DW01_add_3_DW01_add_7
-                       4000              tsl18cio250_min
-mgmt_core_DW01_inc_2_DW01_inc_22
-                       4000              tsl18cio250_min
-mgmt_core_DW01_inc_3_DW01_inc_23
-                       4000              tsl18cio250_min
-mgmt_core_DW01_ash_0_DW01_ash_1
-                       8000              tsl18cio250_min
-mgmt_core_DW01_dec_5_DW01_dec_14
-                       4000              tsl18cio250_min
-mgmt_core_DW01_inc_4_DW01_inc_24
-                       4000              tsl18cio250_min
-mgmt_core_DW01_dec_7_DW01_dec_16
-                       4000              tsl18cio250_min
-mgmt_core_DW01_dec_8_DW01_dec_17
-                       4000              tsl18cio250_min
-mgmt_core_DW01_inc_5_DW01_inc_25
-                       4000              tsl18cio250_min
-mgmt_core_DW01_add_4_DW01_add_8
-                       4000              tsl18cio250_min
-mgmt_core_DW01_inc_6_DW01_inc_26
-                       4000              tsl18cio250_min
-mgmt_core_DW01_cmp6_4_DW01_cmp6_342
-                       4000              tsl18cio250_min
-VexRiscv_DW01_add_0_DW01_add_9
-                       4000              tsl18cio250_min
-VexRiscv_DW01_cmp6_0_DW01_cmp6_344
-                       4000              tsl18cio250_min
-VexRiscv_DW01_add_1_DW01_add_10
-                       4000              tsl18cio250_min
-VexRiscv_DW01_add_2_DW01_add_11
-                       4000              tsl18cio250_min
-VexRiscv_DW01_add_3_DW01_add_12
-                       4000              tsl18cio250_min
-
-
 Global Operating Voltage = 1.98 
 Power-specific unit information :
     Voltage Units = 1V
@@ -3639,26 +2491,26 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   3.0121 mW   (42%)
-  Net Switching Power  =   4.1576 mW   (58%)
+  Cell Internal Power  =   2.5263 mW   (36%)
+  Net Switching Power  =   4.5792 mW   (64%)
                          ---------
-Total Dynamic Power    =   7.1697 mW  (100%)
+Total Dynamic Power    =   7.1056 mW  (100%)
 
-Cell Leakage Power     =   1.2817 uW
+Cell Leakage Power     = 819.1693 nW
 
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
 --------------------------------------------------------------------------------------------------
-io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+io_pad         6.6131e-02        1.3503e-04        5.7237e+03        6.6272e-02  (   1.11%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
-black_box          0.0000        5.6968e-03           62.7200        5.6969e-03  (   0.09%)
-clock_network      2.7560            2.8518        1.3663e+05            5.6080  (  93.20%)  i
-register           0.1087        1.5206e-02        7.1939e+05            0.1246  (   2.07%)
-sequential         0.0000            0.0000          970.4000        9.7040e-07  (   0.00%)
-combinational      0.1474            0.1310        4.2461e+05            0.2788  (   4.63%)
+black_box          0.0000        4.7322e-03           62.7200        4.7323e-03  (   0.08%)
+clock_network      2.1774            2.5973        1.9833e+05            4.7749  (  80.23%)  i
+register           0.1074        1.4864e-02        4.3284e+05            0.1227  (   2.06%)
+sequential     2.2439e-03        6.9747e-06        9.0534e+03        2.2599e-03  (   0.04%)
+combinational      0.1732            0.8070        1.7316e+05            0.9803  (  16.47%)
 --------------------------------------------------------------------------------------------------
-Total              3.0121 mW         3.0037 mW     1.2817e+06 pW         6.0171 mW
+Total              2.5263 mW         3.4240 mW     8.1917e+05 pW         5.9511 mW
 1
 ```
 
@@ -3953,7 +2805,7 @@ again run "make simv" output will come
 
 <img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command11.png" />
 - now run "make hkspi.vcd"  u will get output  of gls passed
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command12.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command9.png" />
 - gtkwave hkspi.vcd u will see the waveform of gls 
 - To view the waveform use vcd file and open it using gtkwave
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command13.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command10.png" />
