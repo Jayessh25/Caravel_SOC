@@ -86,7 +86,7 @@ we have to generate it using this command
 
 <img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command6.png" />
 
-<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command7.png" />
+<img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command7.png" />
 
 
 ## Key Changes Made
