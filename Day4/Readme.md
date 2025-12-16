@@ -874,6 +874,7 @@ puts "INFO: Synthesis Complete!"
 **Note** see currently there is no dummy_por
 
 ---
+
 <img width="776" height="914" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command11.png" />
 
 
