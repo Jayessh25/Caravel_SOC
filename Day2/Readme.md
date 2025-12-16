@@ -79,7 +79,7 @@ Before using this repository, ensure you have the following dependencies install
 
    ```
 ### Running Synthesis
-9. open a terminal and cd to the work folder i.e. [./synthesis/work_folder]()
+9. open a terminal and cd to the work folder i.e. [./synthesis]()
 10. Run synthesis using following command
 ```
 dc_shell -f ../synth.tcl
