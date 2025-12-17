@@ -1,0 +1,141 @@
+Warning: Design 'vsdcaravel' has '5' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating design information... (UID-85)
+Information: Timing loop detected. (OPT-150)
+	chip_core/housekeeping/U739/I chip_core/housekeeping/U739/ZN chip_core/housekeeping/U741/I chip_core/housekeeping/U741/ZN chip_core/housekeeping/wbbd_busy_reg/CP chip_core/housekeeping/wbbd_busy_reg/Q chip_core/housekeeping/U766/I chip_core/housekeeping/U766/ZN chip_core/housekeeping/U4136/A2 chip_core/housekeeping/U4136/ZN chip_core/housekeeping/U4135/A chip_core/housekeeping/U4135/ZN chip_core/housekeeping/U998/I chip_core/housekeeping/U998/Z chip_core/housekeeping/U994/I chip_core/housekeeping/U994/Z chip_core/housekeeping/U2769/I chip_core/housekeeping/U2769/Z chip_core/housekeeping/U1980/I chip_core/housekeeping/U1980/Z chip_core/housekeeping/U1017/I chip_core/housekeeping/U1017/Z chip_core/housekeeping/pll_trim_reg[5]/CP chip_core/housekeeping/pll_trim_reg[5]/Q chip_core/pll/U7/A1 chip_core/pll/U7/Z chip_core/pll/ringosc/dstage[5].id/delayenb0/EN chip_core/pll/ringosc/dstage[5].id/delayenb0/ZN chip_core/pll/ringosc/ibufp10/I chip_core/pll/ringosc/ibufp10/ZN chip_core/pll/ringosc/ibufp11/I chip_core/pll/ringosc/ibufp11/ZN chip_core/clock_ctrl/use_pll_second_reg/CP chip_core/clock_ctrl/use_pll_second_reg/Q chip_core/clock_ctrl/U8/A1 chip_core/clock_ctrl/U8/ZN 
+Information: Timing loop detected. (OPT-150)
+	chip_core/housekeeping/U995/I chip_core/housekeeping/U995/Z chip_core/housekeeping/U3977/I chip_core/housekeeping/U3977/Z chip_core/housekeeping/U1384/I chip_core/housekeeping/U1384/Z chip_core/housekeeping/U1059/I chip_core/housekeeping/U1059/Z chip_core/housekeeping/gpio_configure_reg[3][3]/CP chip_core/housekeeping/gpio_configure_reg[3][3]/Q chip_core/housekeeping/U4142/A1 chip_core/housekeeping/U4142/ZN chip_core/housekeeping/U4138/A1 chip_core/housekeeping/U4138/ZN chip_core/housekeeping/U4137/I chip_core/housekeeping/U4137/ZN chip_core/housekeeping/U4136/A3 chip_core/housekeeping/U4136/ZN chip_core/housekeeping/U4135/A chip_core/housekeeping/U4135/ZN chip_core/housekeeping/U998/I chip_core/housekeeping/U998/Z 
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/housekeeping/wbbd_busy_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/housekeeping/gpio_configure_reg[3][3]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/pll/pll_control/tval_reg[6]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/pll/pll_control/tval_reg[4]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/pll/pll_control/tval_reg[3]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/pll/pll_control/tval_reg[2]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/pll/pll_control/tval_reg[5]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I' and 'ZN' on cell 'chip_core/pll/ringosc/dstage[6].id/delayenb0'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock_ctrl/divider/syncN_reg[1]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'QN' on cell 'chip_core/clock_ctrl/divider/syncN_reg[1]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock_ctrl/divider/syncN_reg[2]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock_ctrl/divider/syncN_reg[0]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/housekeeping/hkspi_disable_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'QN' on cell 'chip_core/housekeeping/wbbd_sck_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I' and 'ZN' on cell 'chip_core/pll/ringosc/dstage[0].id/delayenb0'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I' and 'ZN' on cell 'chip_core/pll/ringosc/dstage[6].id/delayenb1'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I' and 'ZN' on cell 'chip_core/pll/ringosc/dstage[6].id/delayen1'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock_ctrl/divider2/syncN_reg[1]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'QN' on cell 'chip_core/clock_ctrl/divider2/syncN_reg[1]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock_ctrl/divider2/syncN_reg[2]'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'CP' and 'Q' on cell 'chip_core/clock_ctrl/divider2/syncN_reg[0]'
+         to break a timing loop. (OPT-314)
+Information: Input delay ('fall') on clock port 'clk' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('rise') on clock port 'clk' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('fall') on clock port 'hk_serial_clk' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('rise') on clock port 'hk_serial_clk' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('fall') on clock port 'hk_serial_load' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('rise') on clock port 'hk_serial_load' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('fall') on clock port 'hkspi_clk' will be added to the clock's propagated skew. (TIM-112)
+Information: Input delay ('rise') on clock port 'hkspi_clk' will be added to the clock's propagated skew. (TIM-112)
+ 
+****************************************
+Report : qor
+Design : vsdcaravel
+Version: T-2022.03-SP5
+Date   : Tue Dec 16 18:24:31 2025
+****************************************
+
+
+  Timing Path Group 'hk_serial_clk'
+  -----------------------------------
+  Levels of Logic:               0.00
+  Critical Path Length:          0.18
+  Critical Path Slack:          49.03
+  Critical Path Clk Period:    100.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:         -0.14
+  Total Hold Violation:        -24.64
+  No. of Hold Violations:      336.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:       1446
+  Hierarchical Port Count:      13054
+  Leaf Cell Count:              20464
+  Buf/Inv Cell Count:            4771
+  Buf Cell Count:                 573
+  Inv Cell Count:                4201
+  CT Buf/Inv Cell Count:           84
+  Combinational Cell Count:     16303
+  Sequential Cell Count:         4161
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:   287186.920916
+  Noncombinational Area:
+                        272951.804337
+  Buf/Inv Area:          66065.790697
+  Total Buffer Area:         29696.52
+  Total Inverter Area:       36566.85
+  Macro/Black Box Area:   1395.760063
+  Net Area:              20905.057385
+  -----------------------------------
+  Cell Area:            561534.485316
+  Design Area:          582439.542701
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:         25883
+  Nets With Violations:            17
+  Max Trans Violations:             0
+  Max Cap Violations:              16
+  Max Fanout Violations:            1
+  -----------------------------------
+
+
+  Hostname: nanodc.iitgn.ac.in
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    9.06
+  Logic Optimization:                  6.99
+  Mapping Optimization:               11.85
+  -----------------------------------------
+  Overall Compile Time:               31.49
+  Overall Compile Wall Clock Time:    32.28
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.14  TNS: 24.64  Number of Violating Paths: 336
+
+  --------------------------------------------------------------------
+
+
+1

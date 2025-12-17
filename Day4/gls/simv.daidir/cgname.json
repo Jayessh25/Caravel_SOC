@@ -1,0 +1,188 @@
+{
+    "std": [
+        "std",
+        "reYIK",
+        "module",
+        1
+    ],
+    "digital_pll": [
+        "digital_pll",
+        "rcLFH",
+        "module",
+        2
+    ],
+    "user_id_programming_0000": [
+        "user_id_programming_0000",
+        "L9Gt7",
+        "module",
+        3
+    ],
+    "pt3b02": [
+        "pt3b02",
+        "twshI",
+        "module",
+        4
+    ],
+    "chip_io": [
+        "chip_io",
+        "cdmjW",
+        "module",
+        5
+    ],
+    "housekeeping_0000": [
+        "housekeeping_0000",
+        "zZGur",
+        "module",
+        6
+    ],
+    "mgmt_protect": [
+        "mgmt_protect",
+        "ubgDW",
+        "module",
+        7
+    ],
+    "constant_block": [
+        "constant_block",
+        "K1Kn0",
+        "module",
+        8
+    ],
+    "gpio_control_block": [
+        "gpio_control_block",
+        "U31CN",
+        "module",
+        9
+    ],
+    "gpio_defaults_block_0000": [
+        "gpio_defaults_block_0000",
+        "a9CF8",
+        "module",
+        10
+    ],
+    "xres_buf": [
+        "xres_buf",
+        "UFUqY",
+        "module",
+        11
+    ],
+    "RAM256_0000": [
+        "RAM256_0000",
+        "m1Rzf",
+        "module",
+        12
+    ],
+    "VexRiscv": [
+        "VexRiscv",
+        "Ey7ir",
+        "module",
+        13
+    ],
+    "InstructionCache": [
+        "InstructionCache",
+        "y15By",
+        "module",
+        14
+    ],
+    "mgmt_core_wrapper": [
+        "mgmt_core_wrapper",
+        "SzZk1",
+        "module",
+        15
+    ],
+    "spiflash": [
+        "spiflash",
+        "CJhmV",
+        "module",
+        17
+    ],
+    "tbuart": [
+        "tbuart",
+        "qiEEP",
+        "module",
+        18
+    ],
+    "hkspi_tb": [
+        "hkspi_tb",
+        "DaPGG",
+        "module",
+        19
+    ],
+    "pc3b03ed_wrapper": [
+        "pc3b03ed_wrapper",
+        "uChK7",
+        "module",
+        20
+    ],
+    "pc3b03ed": [
+        "pc3b03ed",
+        "ENKWC",
+        "module",
+        21
+    ],
+    "dummy_scl180_conb_1": [
+        "dummy_scl180_conb_1",
+        "VjBq2",
+        "module",
+        22
+    ],
+    "housekeeping_spi": [
+        "housekeeping_spi",
+        "ZzT3Y",
+        "module",
+        23
+    ],
+    "bufbd7": [
+        "bufbd7",
+        "H7T9m",
+        "module",
+        24
+    ],
+    "nd02d4": [
+        "nd02d4",
+        "NvzpB",
+        "module",
+        25
+    ],
+    "delay_stage": [
+        "delay_stage",
+        "P6919",
+        "module",
+        26
+    ],
+    "mprj_io_buffer": [
+        "mprj_io_buffer",
+        "ZH6eT",
+        "module",
+        27
+    ],
+    "buffd7": [
+        "buffd7",
+        "tS7b1",
+        "module",
+        28
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module",
+        29
+    ],
+    "U_FD_N_R_S_NO_QN": [
+        "U_FD_N_R_S_NO_QN",
+        "FqLFq",
+        "udp",
+        31
+    ],
+    "U_FD_P_RB_SB_NO": [
+        "U_FD_P_RB_SB_NO",
+        "fsCp2",
+        "udp",
+        32
+    ],
+    "U_MUX_2_1": [
+        "U_MUX_2_1",
+        "K79QG",
+        "udp",
+        33
+    ]
+}
