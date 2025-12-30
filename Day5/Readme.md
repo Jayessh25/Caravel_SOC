@@ -1,15 +1,4 @@
-# 🚀 Task-4: Management SoC DV Validation on SCL-180 for all hkspi,storage,irq,mpri_ctrl
-<p align="center">
-<strong>POR-Free Architecture Verification</strong>
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-In%20Progress-yellow"/>
-  <img src="https://img.shields.io/badge/PDK-SCL--180-blue"/>
-  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC__SHELL-orange"/>
-  <img src="https://img.shields.io/badge/DV-Test%20Failed-red"/>
-  <img src="https://img.shields.io/badge/GLS-RTL%20%7C%20Synth%20SRAM%20Done-yellowgreen"/>
-</p>
-
+# Task-4: Management SoC DV Validation on SCL-180 for all hkspi,storage,irq,mpri_ctrl
 ---
 
 ## 📌 Objective
