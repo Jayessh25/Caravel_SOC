@@ -2296,13 +2296,12 @@ save_lib -all
 > **📋 Final Statistics Log:**
 
 ```
-
 icc2_shell> report_design
 ****************************************
 Report : design
 Design : raven_wrapper
 Version: U-2022.12-SP3
-Date   : Tue Dec 30 13:22:29 2025
+Date   : Wed Dec 31 00:31:13 2025
 ****************************************
 
 Total number of std cells in library : 134
@@ -2316,34 +2315,34 @@ Total number of ICGs                 : 8
 
 Cell Instance Type  Count         Area
 --------------------------------------
-TOTAL LEAF CELLS  1825022 14586946.379
-unit              1824976 13323078.160
-Standard cells    1824976 13323078.160
-unit              1824976 13323078.160
+TOTAL LEAF CELLS  1727718 15027946.379
+unit              1727665 13323078.160
+Standard cells    1727665 13323078.160
+unit              1727665 13323078.160
 Hard macro cells        1    48868.219
-unit              1824976 13323078.160
+unit              1727665 13323078.160
 Soft macro cells        0        0.000
-unit              1824976 13323078.160
+unit              1727665 13323078.160
 Always on cells         0        0.000
-unit              1824976 13323078.160
-Physical only     1742751 13165315.422
-unit              1824976 13323078.160
-Fixed cells            46  1263868.219
-unit              1824976 13323078.160
-Moveable cells    1824976 13323078.160
-unit              1824976 13323078.160
-Sequential           2658    60922.541
-unit              1824976 13323078.160
-Buffer/inverter     65423   804290.896
-unit              1824976 13323078.160
+unit              1727665 13323078.160
+Physical only     1652946 13544617.180
+unit              1727665 13323078.160
+Fixed cells            53  1704868.219
+unit              1727665 13323078.160
+Moveable cells    1727665 13323078.160
+unit              1727665 13323078.160
+Sequential           2710    61160.079
+unit              1727665 13323078.160
+Buffer/inverter     56417   804260.508
+unit              1727665 13323078.160
 ICG cells               0        0.000
-unit              1824976 13323078.160
+unit              1727665 13323078.160
 
 Logic Hierarchies                    : 0
-Design Masters count                 : 93
-Total Flat nets count                : 85076
-Total FloatingNets count             : 2564
-Total no of Ports                    : 49
+Design Masters count                 : 103
+Total Flat nets count                : 77575
+Total FloatingNets count             : 2332
+Total no of Ports                    : 48
 Number of Master Clocks in design    : 3
 Number of Generated Clocks in design : 0
 Number of Path Groups in design      : 9 (3 of them Non Default)
@@ -2367,11 +2366,11 @@ Number of Multibit LS/ISO Cells      : 0
 Number of Top Level RP Groups        : 0
 Number of Tech Layers                : 21 (11 of them have unknown routing dir.)
 
-Total wire length                    : 27725416.81 micron
-Total number of wires                : 926287
-Total number of contacts             : 2954444
+Total wire length                    : 8520443.02 micron
+Total number of wires                : 936969
+Total number of contacts             : 2760802
 1
-icc2_shell>
+icc2_shell> 
 
 ```
 
@@ -2380,19 +2379,18 @@ icc2_shell>
 ### pg error reports
 
 ```
-icc2_shell> check_pg_connectivity 
-Information: The command 'check_pg_connectivity' cleared the undo history. (UNDO-016)
+check_pg_connectivity
 Checking secondary net through power switch is enabled. 
 Secondary net will be checked together from primary net. They will be treated as the same net
 Primary Net : VDD    Secondary Net:
 Primary Net : VSS    Secondary Net:
 Loading cell instances...
-Number of Standard Cells: 1824976
+Number of Standard Cells: 1727665
 Number of Macro Cells: 1
-Number of IO Pad Cells: 45
+Number of IO Pad Cells: 52
 Number of Blocks: 0
 Loading P/G wires and vias...
-Number of VDD Wires: 1819
+Number of VDD Wires: 1818
 Number of VDD Vias: 981859
 Number of VDD Terminals: 0
 **************Verify net VDD connectivity*****************
@@ -2400,31 +2398,25 @@ Number of VDD Terminals: 0
   Number of floating vias: 0
   Number of floating std cells: 0
   Number of floating hard macros: 0
-  Number of floating I/O pads: 0
+  Number of floating I/O pads: 1
   Number of floating terminals: 0
   Number of floating hierarchical blocks: 0
 ************************************************************
 Loading cell instances...
 Loading P/G wires and vias...
-Number of VSS Wires: 1942
-Number of VSS Vias: 970568
+Number of VSS Wires: 1928
+Number of VSS Vias: 970605
 Number of VSS Terminals: 0
 **************Verify net VSS connectivity*****************
   Number of floating wires: 0
   Number of floating vias: 0
   Number of floating std cells: 0
   Number of floating hard macros: 0
-  Number of floating I/O pads: 0
+  Number of floating I/O pads: 1
   Number of floating terminals: 0
   Number of floating hierarchical blocks: 0
 ************************************************************
-Overall runtime: 12 seconds.
-icc2_shell> check_pg_drc
-Command check_pg_drc started  at Tue Dec 30 13:25:13 2025
-Command check_pg_drc finished at Tue Dec 30 13:25:43 2025
-CPU usage for check_pg_drc: 202.70 seconds ( 0.06 hours)
-Elapsed time for check_pg_drc: 30.25 seconds ( 0.01 hours)
-No errors found.
+Overall runtime: 16 seconds.
 icc2_shell> 
 
 ```
