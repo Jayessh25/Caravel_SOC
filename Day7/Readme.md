@@ -20,7 +20,7 @@
 
 This repository contains the complete physical design implementation of the **Raven wrapper** chip using **Synopsys IC Compiler II (ICC2)**. The design uses the **NangateOpenCellLibrary** standard cell library with **FreePDK45** technology.
 
-<img width="714" height="650" alt="image" src="https://github.com/user-attachments/assets/91c2eed4-5cf5-47b1-8429-fd20d2fc9898" />
+<img width="714" height="650" alt="image" src="https://private-user-images.githubusercontent.com/87092695/530944675-f0fd4856-1f2a-494e-b33e-39f9c8ba213c.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjcxMjU0MDMsIm5iZiI6MTc2NzEyNTEwMywicGF0aCI6Ii84NzA5MjY5NS81MzA5NDQ2NzUtZjBmZDQ4NTYtMWYyYS00OTRlLWIzM2UtMzlmOWM4YmEyMTNjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEyMzAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMjMwVDIwMDUwM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTI1N2MyNzI2ODA0NTc4YTY3ODk2NGM1OGQ3NjI1NzljOGY2MDJmZTYxZWUxZjljOGRhMzljMDVjYWVjNmJmN2YmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.kG_um3sPpm4IhaaqnTZmelE5N_9jjBWcaAGFiuAb94k" />
 
 ### Design Information
 - **Design Name:** `raven_wrapper`
@@ -2574,7 +2574,8 @@ Warning: High congestion in region
 Error: PG spacing violation
 ```
 **Solution:** Increase stripe spacing, check via rules
-```
+
+
 ---
 
 ## References
