@@ -921,17 +921,13 @@ puts "\n===== FLOORPLAN COMPLETED SUCCESSFULLY =====\n"
 
 ```
 
-</details>
+how to run the floorplan.tcl
 
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command1.png" />
 
-<details>
-  <summary>floorplan.log</summary>
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command2.png" />
 
-```
- 
-```
-
-</details>
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command5.png" />
 
 
 ---
@@ -1609,10 +1605,10 @@ source ${write_block_data_script}
 source /file path from home to file/powerplan.tcl
 ```
 then write gui_start u will see the powerplan gui
-- The above command will run the 
-<img width="1591" height="910" alt="image" src="https://github.com/user-attachments/assets/d633c794-be50-4196-973d-ebe237458a1f" />
-<img width="1608" height="1018" alt="image" src="https://github.com/user-attachments/assets/b816eba4-e64e-4af1-9b7c-7fbc22c30c94" />
-<img width="1606" height="986" alt="image" src="https://github.com/user-attachments/assets/a8669e51-6c60-4efa-90e8-f684a938e61f" />
+- The above command will run the
+  
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command4.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command5.png" />
 
 ---
 ## Explanation of Powerplan.tcl
@@ -2102,10 +2098,13 @@ save_lib -all
 
 - After running the powerplan.tcl in the same icc2_shell window itself we have write the above command so that it will perforn cts,placement and routing
 then write gui_start u will see the routing gui
-- The above command will run the 
-<img width="1591" height="910" alt="image" src="https://github.com/user-attachments/assets/d633c794-be50-4196-973d-ebe237458a1f" />
-<img width="1608" height="1018" alt="image" src="https://github.com/user-attachments/assets/b816eba4-e64e-4af1-9b7c-7fbc22c30c94" />
-<img width="1606" height="986" alt="image" src="https://github.com/user-attachments/assets/a8669e51-6c60-4efa-90e8-f684a938e61f" />
+- The above command will run the
+
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command20.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command8.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command9.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command10.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command12.png" />
 
 ---
 ## Explanation of Script
@@ -2295,6 +2294,7 @@ save_lib -all
 
 > **📋 Final Statistics Log:**
 
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command6.png" />
 ```
 icc2_shell> report_design
 ****************************************
@@ -2378,6 +2378,8 @@ icc2_shell>
 
 ### pg error reports
 
+
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command7.png" />
 ```
 check_pg_connectivity
 Checking secondary net through power switch is enabled. 
