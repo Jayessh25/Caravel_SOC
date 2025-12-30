@@ -791,15 +791,7 @@ In terminal :
 ```bash
 csh
 source ~/toolRC_iitgntapeout
-icc2_shell -f floorplan.tcl
 ```
-
-### Post-Execution
-
-<img width="1602" height="1019" alt="image" src="https://github.com/user-attachments/assets/52b5adb6-7078-4e05-a364-f8d5318eeee2" />
-
-After successful execution:
-- Open the design library in ICC2 GUI for visualization
 
 ## Running the Floorplanning Flow
 
