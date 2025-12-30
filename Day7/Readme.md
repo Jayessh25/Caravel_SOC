@@ -12,7 +12,6 @@
 6. [Power Planning](#power-planning)
 7. [Placement, CTS, and Routing](#placement-cts-and-routing)
 8. [Results and Verification](#results-and-verification)
-9. [Directory Structure](#directory-structure)
 
 ---
 
