@@ -1,4 +1,4 @@
-# 🚀 Task-4: Management SoC DV Validation on SCL-180  
+# 🚀 Task-4: Management SoC DV Validation on SCL-180 for all hkspi,storage,irq,mpri_ctrl
 <p align="center">
 <strong>POR-Free Architecture Verification</strong>
 </p>
@@ -32,7 +32,7 @@ The original Caravel Management SoC DV tests validate:
 - Housekeeping SPI
 - GPIO configuration
 - User project control
-- Storage interfaces
+- Storage interfaces,gpio
 - IRQ behavior
 
 - They **do not depend on internal POR logic**.  
