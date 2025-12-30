@@ -1,5 +1,30 @@
 # Task-4: Management SoC DV Validation on SCL-180 for all hkspi,storage,irq,mpri_ctrl
 
+POR-free Caravel Management SoC was validated on SCL-180 using the official DV suite, with hkspi passing consistently across RTL, GLS with RTL SRAM, and GLS with synthesized SRAM. This confirms correct external-reset behavior, synthesis integrity, and robust SRAM integration despite other DV tests still failing.
+
+---
+## 📑 Table of Contents
+
+- [Objective](#-objective)
+- [Background](#-background)
+- [Tools & Environment](#-tools--environment)
+- [Scope of DV Executed](#-scope-of-dv-executed)
+  - [Management SoC DV Coverage](#management-soc-dv-coverage)
+- [Phase-1: POR-Free RTL Preparation](#-phase-1-por-free-rtl-preparation)
+  - [Reset Architecture](#reset-architecture)
+  - [TEST-1: HKSPI](#test-1-hkspi)
+  - [TEST-2: GPIO](#test-2-gpio)
+  - [TEST-3: IRQ](#test-3-irq)
+  - [TEST-4: STORAGE](#test-4-storage)
+  - [TEST-5: MPRJ_CONTROL](#test-5-mprj_control)
+- [Phase-2: DC_SHELL Synthesis (Baseline)](#-phase-2-dc_shell-synthesis-baseline)
+- [Phase-3: DV Run-1 — GLS with RTL SRAM (Phase-A)](#-phase-3-dv-run-1--gls-with-rtl-sram-phase-a)
+- [Phase-4: SRAM Synthesis](#-phase-4-sram-synthesis)
+- [Phase-5: DV Run-2 — GLS with Synthesized SRAM (Phase-B)](#-phase-5-dv-run-2--gls-with-synthesized-sram-phase-b)
+- [Engineering Learnings](#-engineering-learnings)
+- [Final Conclusion](#-final-conclusion)
+- [Summary](#-summary)
+- [Author](#-author)
 
 ## 📌 Objective
 
