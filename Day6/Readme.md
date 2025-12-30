@@ -1,14 +1,15 @@
 # Task_Floorplan_ICC2 – GitHub Documentation
 
 This repository contains an **ICC2 floorplan setup** for the design using Synopsys ICC2. The flow implements floorplan initialization with proper library setup, technology configuration, and design geometry definition.
+
 ---
 ## 📑 Table of Contents
 
-1. [Introduction to the VSDBabySoC](#introduction-to-the-vsdbabysoc)  
-2. [Project Overview](#project-overview)  
-3. [Repository Structure](#repository-structure)  
-4. [Floorplan Script Overview (`floorplan.tcl`)](#floorplan-script-overview-floorplantcl)  
-5. [Script Details](#script-details)  
+
+1. [Project Overview](#project-overview)  
+2. [Repository Structure](#repository-structure)  
+3. [Floorplan Script Overview (`floorplan.tcl`)](#floorplan-script-overview-floorplantcl)  
+4. [Script Details](#script-details)  
    - [Setup File Sourcing](#1-setup-file-sourcing)  
    - [Design Library Creation](#2-design-library-creation)  
    - [Netlist Reading](#3-netlist-reading)  
@@ -19,27 +20,27 @@ This repository contains an **ICC2 floorplan setup** for the design using Synops
    - [Floorplan Initialization](#8-floorplan-initialization)  
    - [Saving the Design](#9-saving-the-design)  
 
-6. [Key Features](#key-features)  
+5. [Key Features](#key-features)  
    - [Modular Setup Approach](#modular-setup-approach)  
    - [Technology Flexibility](#technology-flexibility)  
    - [Flow Adaptability](#flow-adaptability)  
    - [Quality Checks](#quality-checks)  
 
-7. [How to Run](#how-to-run)  
+6. [How to Run](#how-to-run)  
    - [Prerequisites](#prerequisites)  
    - [Running the Floorplanning Flow](#running-the-floorplanning-flow)  
 
-8. [Error to Solve – IO Pad Placement & Fixing](#error-to-solve--io-pad-placement--fixing)  
-9. [Updated Version Changes](#updated-version-changes)  
-10. [Execution](#execution)  
-11. [GUI Inspection](#gui-inspection)  
-12. [Pin Placement](#pin-placement)  
-13. [DEF Generation](#def-generation)  
-14. [Summary](#summary)  
-15. [Report & Log](#report--log)  
-16. [Verification Checklist](#verification-checklist)  
-17. [Variable Definitions](#variable-definitions)  
-18. [Best Practices](#best-practices)  
+7. [Error to Solve – IO Pad Placement & Fixing](#error-to-solve--io-pad-placement--fixing)  
+8. [Updated Version Changes](#updated-version-changes)  
+9. [Execution](#execution)  
+10. [GUI Inspection](#gui-inspection)  
+11. [Pin Placement](#pin-placement)  
+12. [DEF Generation](#def-generation)  
+13. [Summary](#summary)  
+14. [Report & Log](#report--log)  
+15. [Verification Checklist](#verification-checklist)  
+16. [Variable Definitions](#variable-definitions)  
+17. [Best Practices](#best-practices)  
 
 ---
 ***
