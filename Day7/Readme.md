@@ -1,9 +1,6 @@
 # Raven Physical Design Documentation
 ## Complete ICC2 Implementation Flow
 
-<img width="714" height="650" alt="image" src="https://github.com/user-attachments/assets/91c2eed4-5cf5-47b1-8429-fd20d2fc9898" />
-
-
 ---
 
 ## Table of Contents
@@ -22,6 +19,8 @@
 ## Overview
 
 This repository contains the complete physical design implementation of the **Raven wrapper** chip using **Synopsys IC Compiler II (ICC2)**. The design uses the **NangateOpenCellLibrary** standard cell library with **FreePDK45** technology.
+
+<img width="714" height="650" alt="image" src="https://github.com/user-attachments/assets/91c2eed4-5cf5-47b1-8429-fd20d2fc9898" />
 
 ### Design Information
 - **Design Name:** `raven_wrapper`
@@ -920,18 +919,19 @@ save_lib -all
 puts "\n===== FLOORPLAN COMPLETED SUCCESSFULLY =====\n"
 
 ```
+</details>
 
-how to run the floorplan.tcl
+### How to run the floorplan.tcl
 
 <img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command1.png" />
 
 <img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command2.png" />
 
-<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command5.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command3.png" />
 
 
 ---
-
+## Explanation of FLoorplan.tcl:
 ### Block 1: Setup and Initialization
 
 ```tcl
@@ -1441,6 +1441,7 @@ save_block -hier -force -label placement_ready
 save_lib -all
 
 puts "\n===== FLOORPLAN COMPLETED SUCCESSFULLY =====\n"
+
 ```
 
 **What it does:**
@@ -1607,7 +1608,7 @@ source /file path from home to file/powerplan.tcl
 then write gui_start u will see the powerplan gui
 - The above command will run the
   
-<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command4.png" />
+<img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/command4.png" />
 <img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command5.png" />
 
 ---
@@ -2295,6 +2296,7 @@ save_lib -all
 > **📋 Final Statistics Log:**
 
 <img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command6.png" />
+
 ```
 icc2_shell> report_design
 ****************************************
@@ -2380,6 +2382,7 @@ icc2_shell>
 
 
 <img width="714" height="650" alt="image" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day7/Images/Command7.png" />
+
 ```
 check_pg_connectivity
 Checking secondary net through power switch is enabled. 
@@ -2523,6 +2526,7 @@ Date   : Tue Dec 30 13:26:50 2025
   ------------------------------------------------------------------------
   slack (VIOLATED)                                          -1.52
 
+```
 ---
 
 ## Key Takeaways
