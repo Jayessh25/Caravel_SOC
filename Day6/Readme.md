@@ -887,6 +887,18 @@ This command distributes the top-level ports along the periphery without enforci
 
 ![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command5.png)
 
+To write a def file after floorplanning , the following command is used
+
+```
+write_def raven_Wrapper.floorplan.def
+```
+
+<img width="1680" height="1050" alt="write_def" src="https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command10.png" />
+
+
+---
+
+
 ---
 
 ## Summary
