@@ -90,14 +90,14 @@ This confirms a **clean external reset architecture**.
 **RTL SIMULATION**
 **STATUS** : PASSED ✅
 
-![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command1.png)
-![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command1.png)
+
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command6.png)
 
 **GLS SIMULATION**
 **STATUS** : PASSED ✅
 
-![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command1.png)
-![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command1.png)
+
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day3/Images/Command9.png)
 
 ---
 
