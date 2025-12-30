@@ -784,6 +784,59 @@ Built-in design checking before floorplanning catches:
 3. Ensure reference libraries and technology files are accessible
 4. Create reports directory: `mkdir -p ${REPORTS_DIR_INIT_DP}`
 
+
+### Error to solve 
+
+**Purpose**
+
+IO Pad Placement & Fixing for Caravel chip in Innovus ICC2. Locks pad positions and defines IO guide rails.
+Section 1: set_attribute ... physical_status -value placed . Fix 45+ IO buffer/pad cells in place
+**What it does:** 
+    Sets physical_status placed on all GPIO buffers, flash IO buffers, clock/reset buffers, analog control buffers. Prevents placer from moving them.
+
+**Cell Types Fixed:**
+
+- **GPIO:** gpio0 to gpio15 (16 pins)
+- **Flash:** flash_io_buf_0 to _3, flash_clk_buf, flash_csb_buf
+- **Clock/Reset:** pll_clk_buf, xtal_in_buf, reset_buf, ext_reset_buf
+- **Control:** analog_out_sel_buf, comp_ena_buf, opamp_ena_buf, etc.
+- **Serial:** ser_rx_buf, ser_tx_buf, spi_sck_buf
+
+Section 2: create_io_guide
+
+Purpose: Define IO placement rails/boundaries for each chip side
+Chip Size: 3588μm × 5188μm (from earlier floorplan)
+Side	Pad Cells	Line Coordinates	Purpose
+Right	analog_out_sel_buf, flash_clk_buf, etc. (11 pads)	{1701 1402} 1101	Vertical rail at x=1701
+Left	flash_io_buf_0-3, gpio0-14 (11 pads)	{0 300} 1101	Vertical rail at x=0
+Top	gpio15, gpio2-9, irq_pin_buf (11 pads)	{300 1701} 1101	Horizontal rail at y=5188
+Bottom	opamp_ena_buf, pll_clk_buf, etc. (13 pads)	{1402 0} 1101	Horizontal rail at y=0
+
+## Updated Version Changes
+
+- Old → New:
+
+```
+text
+create_io_guide -side right -line {{1701 1402} 1101} → {{3588 5188} 5188}
+```
+**Fix:** Matches actual die size {3588 5188} instead of core coordinates.
+
+**Added:** comp_ninputsrc_buf0/1, comp_pinputsrc_buf0/1 (split buffers).
+Flow Context
+
+```
+text
+1. Floorplan (3588×5188μm) → 2. PG connect → 3. THIS: Fix IO pads → 4. Place stdcells
+```
+
+**Result:** All IO pads locked in position with guide rails for automated stdcell placement around periphery. Ready for global placement! 🚀
+
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command6.png)
+changed from that to
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command7.png)
+
+---
 ### Execution
 
 In terminal :
