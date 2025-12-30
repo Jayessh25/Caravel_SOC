@@ -1,5 +1,15 @@
-# Raven Physical Design Documentation
-## Complete ICC2 Implementation Flow
+
+# Final task: Raven Physical Design Documentation (Floorplan to Routing)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Floorplan to routing -Completed-brightgreen"/>
+  <img src="https://img.shields.io/badge/Tool-ICC2-blue"/>
+  <img src="https://img.shields.io/badge/Technology-NDM-orange"/>
+  <img src="https://img.shields.io/badge/Stage-Physical%20Design-yellowgreen"/>
+  <img src="https://img.shields.io/badge/GUI-Verified-success"/>
+</p>
+
+Implemented complete physical design flow in this repository, including floorplanning, standard-cell placement, clock tree synthesis (CTS), and routing using ICC2, with reports generated for placement quality, wirelength, and physical violations.
 
 ---
 
