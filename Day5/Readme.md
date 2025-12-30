@@ -104,7 +104,8 @@ This confirms a **clean external reset architecture**.
 **RTL SIMULATION**
 **STATUS** : FAILED ❌
 
-![rtl](.Screenshots/gpio_rtl.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command1.png)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command2.png)
 
 ---
 
@@ -113,7 +114,8 @@ This confirms a **clean external reset architecture**.
 **RTL SIMULATION**
 **STATUS** : FAILED ❌
 
-![rtl](.Screenshots/irq_rtl.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command3.png)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command4.png)
 
 ---
 ### TEST-4: STORAGE
@@ -121,14 +123,16 @@ This confirms a **clean external reset architecture**.
 **RTL SIMULATION**
 **STATUS** : FAILED ❌
 
-![rtl](.Screenshots/storage_rtl.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command5.png)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command6.png)
 
 ---
 ### TEST-5: MPRJ_CONTROL
 **RTL SIMULATION**
 **STATUS** : FAILED ❌
 
-![rtl](.Screenshots/mprj_rtl.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command7.png)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day5/Images/Command8.png)
 
 ---
 
