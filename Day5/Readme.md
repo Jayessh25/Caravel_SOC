@@ -181,12 +181,12 @@ Reset | External (`resetb`) |
 **Black Boxed SRAM**
 *(So sram will be treated as `RTL` models for `gls`)*
 
-![rtl](.Screenshots/bb.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command11.png)
 
 
 **GLS OUTPUT**
 
-![rtl](.Screenshots/sram_rtl_gl.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command9.png)
 
 ---
 ## 🧪 Phase-4: SRAM Synthesis
@@ -225,11 +225,11 @@ Reset | External (`resetb`) |
 
 **Synthesized SRAM Models**
 
-![rtl](.Screenshots/synth_sram.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command11.png)
 
 **GLS OUTPUT**
 
-![rtl](.Screenshots/sram_synth_gl.jpeg)
+![rtl](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day4/Images/Command9.png)
 
 ---
 
