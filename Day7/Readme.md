@@ -2576,7 +2576,7 @@ Warning: High congestion in region
 Error: PG spacing violation
 ```
 **Solution:** Increase stripe spacing, check via rules
-
+```
 ---
 
 ## References
