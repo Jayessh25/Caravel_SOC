@@ -1,5 +1,6 @@
 # Task_Floorplan_ICC2 – GitHub Documentation
-
+<p align="center">
+	
 This repository contains an **ICC2 floorplan setup** for the design using Synopsys ICC2. The flow implements floorplan initialization with proper library setup, technology configuration, and design geometry definition.
 
 ---
