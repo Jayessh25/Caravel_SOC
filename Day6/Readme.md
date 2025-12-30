@@ -800,10 +800,11 @@ The ICC2 shell is invoked using the floorplanning script:
 ```
 icc2_shell -f floorplan.tcl | tee floorplan.log
 ```
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command1.png)
 
 After successful execution, the design library is created, the floorplan is initialized.
 
-![Alt text](images/task5_1.png)
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command2.png)
 
 ---
 
@@ -815,9 +816,9 @@ The ICC2 graphical interface can be launched using:
 start_gui
 ```
 
-![Alt text](images/task5_2.png)
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command3.png)
 
-
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command4.png)
 
 ---
 
@@ -831,7 +832,7 @@ place_pins -self
 
 This command distributes the top-level ports along the periphery without enforcing ordering or side constraints. While not final pin placement, this helps verify port visibility, orientation, and connectivity at the floorplan stage.
 
-![Alt text](images/task5_4.png)
+![Alt text](https://github.com/Jayessh25/Caravel_SOC/blob/main/Day6/Images/Command5.png)
 
 ---
 
