@@ -1,3 +1,188 @@
+# 🚀 RISC-V SoC Tapeout Program – Phase 2  
+## Caravel SoC Technology Migration & Integration Study (Sky130 → SCL180)
+
+![RISC-V](https://img.shields.io/badge/RISC--V-SoC-blue?style=for-the-badge)
+![Caravel](https://img.shields.io/badge/Caravel-Platform-orange?style=for-the-badge)
+![Sky130](https://img.shields.io/badge/PDK-Sky130-lightgrey?style=for-the-badge)
+![SCL180](https://img.shields.io/badge/PDK-SCL180-green?style=for-the-badge)
+![Stage](https://img.shields.io/badge/Stage-Frontend%20Validated-yellow?style=for-the-badge)
+
+---
+
+## 📘 Introduction
+
+This repository captures my **independent technical work during Phase 2 of the RISC-V SoC Tapeout Program**, focused on **analyzing, adapting, and validating the Caravel SoC for a new semiconductor technology node**.
+
+Unlike a simple porting exercise, this phase concentrated on:
+- Understanding **technology-coupled RTL assumptions**
+- Stress-testing the SoC under a **non-native PDK**
+- Identifying **hidden integration failures** that survive synthesis but fail silicon
+
+The work culminated in a **functionally stable RTL baseline**, verified through synthesis and gate-level simulation, and ready for backend implementation under **SCL180 (180 nm)** constraints.
+
+---
+
+## 🔍 Scope of Work
+
+The repository documents a **frontend-heavy SoC engineering effort**, covering:
+
+- RTL integration validation  
+- Technology-aware synthesis debugging  
+- Firmware-to-hardware interface tracing  
+- Early physical design feasibility checks  
+
+Rather than optimizing performance, the primary objective was **correctness, portability, and verification rigor**.
+
+---
+
+## 🧰 Design & Verification Stack
+
+**Languages & Design**
+- Verilog / SystemVerilog
+- RISC-V ISA-based soft processors
+
+**Simulation & Verification**
+- Synopsys VCS
+- Icarus Verilog
+- GTKWave
+
+**Synthesis & Physical Design**
+- Synopsys Design Compiler (DC)
+- DC_TOPO
+- Synopsys ICC2 (early PD only)
+
+**SoC Components**
+- Caravel SoC platform
+- PicoRV32 and VexRiscv cores
+- Wishbone interconnect
+
+**Technology**
+- Sky130 (reference PDK)
+- SCL180 (migration target)
+
+---
+
+## 🧩 Key Engineering Contributions
+
+| Area | Engineering Focus | Result |
+|-----|------------------|--------|
+| **Technology Migration** | Adapted Caravel RTL & synthesis flow for SCL180 | Multi-PDK compatible frontend |
+| **RTL Robustness** | Fixed reset, hierarchy, and signal connectivity issues | Clean synthesis & GLS |
+| **Core Evaluation** | Studied PicoRV32 vs VexRiscv integration complexity | Reduced integration risk |
+| **Verification Depth** | RTL ↔ Gate-Level simulation correlation | Functional consistency ensured |
+| **Padframe Analysis** | Audited I/O control and routing for SCL180 | Backend-ready I/O structure |
+| **Firmware Alignment** | Cross-checked firmware expectations vs RTL behavior | Detected critical GPIO bug |
+
+---
+
+## 🔁 Technology Migration Insights (Sky130 → SCL180)
+
+Moving Caravel away from its native Sky130 environment exposed **implicit design dependencies**, including:
+
+- Timing and drive-strength assumptions
+- Reset and initialization behavior
+- Pad control signal expectations
+- Library-driven synthesis side effects
+
+### Adaptation Steps
+- Rebuilt synthesis libraries for SCL180
+- Tuned DC/DC_TOPO constraints
+- Modified RTL blocks sensitive to PDK rules
+- Reworked padframe logic for SCL180 cells
+- Revalidated design using gate-level simulation
+
+This reinforced a key lesson:  
+> **PDK migration is an architectural validation problem, not a library swap.**
+
+---
+
+## 🧪 RTL Debug & Integration Validation
+
+Multiple synthesis-blocking and silicon-risk issues were uncovered:
+
+- Mismatched module interfaces
+- Incomplete reset propagation
+- Dangling or unused pad control signals
+- Firmware-visible registers missing hardware backing
+
+Each issue was debugged through:
+1. Targeted RTL isolation  
+2. Iterative synthesis  
+3. Gate-level simulation correlation  
+
+Result: a **stable and analyzable RTL system** suitable for backend handoff.
+
+---
+
+## 🚨 Critical GPIO Failure Identified
+
+One of the most important findings of this phase:
+
+- Firmware accessed GPIOs via **CSR-style registers**
+- RTL exposed **legacy MMIO-style logic**
+- Several GPIO control signals were **never physically connected**
+
+This flaw passed synthesis and simulation but would have caused **dead GPIOs in silicon**.
+
+✔ Issue detected  
+✔ Root cause identified  
+✔ Fix path clearly defined  
+
+This underscores the importance of **firmware–RTL co-verification**, even in “working” designs.
+
+---
+
+## 🏗️ Backend Readiness Assessment
+
+After frontend stabilization:
+
+- Floorplanning experiments were performed in ICC2
+- Area utilization and congestion trends were reviewed
+- Timing feasibility was evaluated under SCL180 constraints
+
+The design is **structurally capable of progressing to full P&R**, pending GPIO and register-map corrections.
+
+---
+
+## 👨‍🔧 What I Personally Implemented
+
+All work in this repository reflects **hands-on engineering**, including:
+
+- SCL180 PDK setup and library integration
+- Synthesis flow modification and validation
+- RTL debug of hierarchy, reset, and connectivity issues
+- RTL and gate-level simulation using VCS & Icarus
+- Padframe inspection and signal tracing
+- Firmware-to-hardware register path analysis
+- Early physical design exploration using ICC2
+- Report analysis (area, timing, congestion)
+
+> ⚙️ No steps were theoretical or delegated — all debugging and validation was performed directly.
+
+---
+
+## 📚 Technical Takeaways
+
+- Passing synthesis does **not** guarantee silicon correctness  
+- Firmware mismatches can silently break hardware  
+- Auto-generated SoC platforms require aggressive verification  
+- Technology migration exposes hidden RTL assumptions  
+- Frontend quality determines backend success
+
+---
+
+## 📌 Current Status
+
+- **Phase**: Pre-Tapeout (Frontend Validated)  
+- **Technology Node**: SCL180 (180 nm)  
+- **Flow Coverage**: RTL → Synthesis → GLS → Early PD  
+- **Next Milestone**: GPIO fix + full Place & Route
+
+---
+
+> 🧠 *This repository documents real SoC engineering challenges encountered during technology migration and highlights the importance of deep verification beyond tool success indicators.*
+
+<details>
 # 🏗️ RISC-V SoC Tapeout Journey – Phase 2  
 ### Caravel SoC Migration from Sky130 to SCL180
 
@@ -136,3 +321,4 @@ Note:> 🔧 All debugging, migration, verification, and analysis tasks described
 ---
 
 > 📌 *This project reflects real-world SoC integration challenges and emphasizes rigorous verification before silicon tapeout.*
+</details>
